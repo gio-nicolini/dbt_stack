@@ -1,10 +1,9 @@
 with source_data as(
     SELECT *
     FROM {{ source('data_raw', 'customers_raw') }}
-)
+),
 
-with replace_name as (
-
+renamed_columns as (
     SELECT customer_id,
             name as full_name,
             email,
@@ -16,5 +15,7 @@ with replace_name as (
     FROM source_data
 )
 
+
+
 SELECT *
-FROM replace_name
+FROM renamed_columns
