@@ -67,22 +67,22 @@ if __name__ == '__main__':
     # Create conn
     engine = create_engine(DATABASE_URL)
     
-    # Generate df with faker data
-    n_customers: int = 2000
-    n_products: int = 20
-    
-    customers_df: DataFrame = generate_customers(n_customers)
-    products_df: DataFrame = generate_products(n_products)
-    
-    
     # Test
     try:
         with engine.connect() as conn:
-            
-            customers_df.to_sql('customers_raw', conn, index=False, if_exists='replace')
-            products_df.to_sql('products_raw', conn, index=False, if_exists='replace')
+            print("Conn sucessfully")
             
         conn.close()
         
     except Exception as e:
         print(f"Conn failed. {e}")
+    
+    
+    # n_customers: int = 2000
+    # n_products: int = 20
+    
+    # customers_df: DataFrame = generate_customers(n_customers)
+    # products_df: DataFrame = generate_products(n_products)
+    
+    # print(customers_df.head())
+    # print(products_df.head())
